@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Sep 26 23:05:26 2019
-
-@author: brunomattedi
-"""
-
 import speedtest
 from datetime import datetime as dt
 import os
