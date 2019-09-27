@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Sep 26 23:04:54 2019
-
-@author: brunomattedi
-"""
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Copyright 2012 Matt Martz
