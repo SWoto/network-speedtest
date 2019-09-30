@@ -9,8 +9,8 @@ try:
 except:
     import http.client as httplib
 
-def checkFolderOrFile(path):
-    if os.path.exists(path):
+def checkFolderOrFile(pathFile):
+    if os.path.exists(pathFile):
         return True
     else:
         return False
@@ -46,7 +46,7 @@ def test(logger):
 
 def textReport(logger, path,file):
     # write header to new csv
-    if not(checkFolderOrFile(logger,path+file)):
+    if not(checkFolderOrFile(path+file)):
         try:
             with open(path+file, 'w') as f:
                 f.write('timestamp, status, download [MB/s], upload[MB/s], ping [ms]\n')
