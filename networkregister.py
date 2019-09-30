@@ -53,7 +53,7 @@ def textReport(path,file):
         try:
             with open(path+file, 'w') as f:
                 f.write('timestamp, status, download [MB/s], upload[MB/s], ping [ms]\n')
-                logging.debug('The header has been written.)
+                logging.debug('The header has been written.')
         except Exeption as e:
             logging.warning('Couldn\'t write the header into file. Error: {}'.format(e))
         
