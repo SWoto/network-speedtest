@@ -65,14 +65,14 @@ def textReport(path,file):
             try:
                 d, u, p = test()
                 f.write('{};connected;{:.2f};{:.2f};{:.2f}\n'.format(ts, d / 1024 / 1024, u / 1024 / 1024, p))
-                logging.debug('Speedtest has been written.)
+                logging.debug('Speedtest has been written.')
             except Exception as e:
                 logging.warning('Couldn\'t execute/write speedtest. Error: {}'.format(e))
                 f.write('{};disconnected;{:.2f};{:.2f};{}\n'.format(ts, 0., 0., 'inf'))
         else:
             try:                  
                 f.write('{};disconnected;{:.2f};{:.2f};{}\n'.format(ts, 0., 0., 'inf'))
-                logging.debug('Current Status has been written.)
+                logging.debug('Current Status has been written.')
             except Exception as e:
                 logging.warning('Couldn\'t write into file. Error: {}'.format(e))
 
