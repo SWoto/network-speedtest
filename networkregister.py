@@ -74,7 +74,7 @@ def textReport(logger, path,file):
                 logger.exception('Couldn\'t write into file.')
 
 
-def main(logger):
+def main(logger, path, file):
     #run every five minutes = 300 seconds
     threading.Timer(300.0, main, [logger, path, file]).start()  
     textReport(logger, path, file)
