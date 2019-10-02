@@ -79,11 +79,14 @@ def main(logger, path, file):
     threading.Timer(300.0, main, [logger, path, file]).start()  
     textReport(logger, path, file)
       
-        
-logging.basicConfig(filename='speedtest.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
-# Get the logger specified in the file
-logger = logging.getLogger(__name__)
-path = ''
+dir = os.path.dirname(__file__)
 file = 'speedhistory.csv'
+out_path = os.path.join(dir, file)
+log_path = os.path.join(dir, 'speedtest.log')
+print(out_path)
+logging.basicConfig(filename=log_path, filemode='a+', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+# Get the logger specified in the file
 
-main(logger, path, file)
+
+
+main(logging, out_path, file)
