@@ -2,8 +2,6 @@ import speedtest
 from datetime import datetime as dt
 import os
 import threading
-import logging
-import logging.config
 try:
     import httplib
 except:
@@ -46,11 +44,11 @@ def test():
         return None        
 
 
-def textReport(path, file):
+def textReport(full_path):
     # write header to new csv
-    if not(checkFolderOrFile(path+file)):
+    if not(checkFolderOrFile(full_path)):
         try:
-            with open(path+file, 'w') as f:
+            with open(full_path, 'w') as f:
                 f.write('timestamp, status, download [MB/s], upload[MB/s], ping [ms]\n')
                 #logger.debug('The header has been written.')
         except Exception as e:
@@ -58,7 +56,7 @@ def textReport(path, file):
             print(e)
         
     #write data into csv        
-    with open(path+file, 'a') as f:
+    with open(full_path, 'a') as f:
         ts = dt.now()
         if haveInternet():
             print('{}: Testing... '.format(ts), end='')
@@ -81,19 +79,19 @@ def textReport(path, file):
                 #logger.exception('Couldn\'t write into file.')
 
 
-def main(path, file):
+def main(full_path):
     #run every five minutes = 300 seconds
-    threading.Timer(300.0, main, [path, file]).start()  
-    textReport(path, file)
+    threading.Timer(300.0, main, [full_path]).start()  
+    textReport(full_path)
       
 dir = os.path.dirname(__file__)
 file = 'speedhistory.csv'
 out_path = os.path.join(dir, file)
 #log_path = os.path.join(dir, 'speedtest.log')
-print(out_path)
+print('Saving tests in: {}'.format(out_path))
 #logging.basicConfig(filename=log_path, filemode='a+', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 # Get the logger specified in the file
 
 
 
-main(out_path, file)
+main(out_path)
