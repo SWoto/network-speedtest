@@ -61,10 +61,12 @@ def textReport(path, file):
     with open(path+file, 'a') as f:
         ts = dt.now()
         if haveInternet():
-            print('{}: Testing...'.format(ts))
+            print('{}: Testing... '.format(ts), end='')
             try:
                 d, u, p = test()
-                f.write('{};connected;{:.2f};{:.2f};{:.2f}\n'.format(ts, d / 1024 / 1024, u / 1024 / 1024, p))
+                string = 'connected;{:.2f};{:.2f};{:.2f}\n'.format(d / 1024 / 1024, u / 1024 / 1024, p)
+                f.write('{};{}'.format(ts, string))
+                print(string)
                 #logger.debug('Speedtest has been written.')
             except Exception as e:
                 f.write('{};disconnected;{:.2f};{:.2f};{}\n'.format(ts, 0., 0., 'inf'))
