@@ -23,7 +23,7 @@ def haveInternet(logger):
         conn.close()
         logging.debug('Successful Request')
         return True
-    except Exeption as e:
+    except Exception as e:
         conn.close()
         logging.exception('Request Failure')
         return False
@@ -39,7 +39,7 @@ def test(logger):
         res = s.results.dict()
         logging.debug('Speedtest successfully made')
         return res.get("download"), res.get("upload"), res.get("ping")
-    except Exeption as e:
+    except Exception as e:
         logging.exception('Speedtest Failure')
         return None        
 
@@ -51,7 +51,7 @@ def textReport(logger, path,file):
             with open(path+file, 'w') as f:
                 f.write('timestamp, status, download [MB/s], upload[MB/s], ping [ms]\n')
                 logger.debug('The header has been written.')
-        except Exeption as e:
+        except Exception as e:
             logger.exception('Couldn\'t write the header into file.')
         
     #write data into csv        
