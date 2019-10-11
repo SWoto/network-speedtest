@@ -1,0 +1,3 @@
+#Doesnt need to track speedhistory
+NetworkSpeedHistory.csv
+database_config.py
