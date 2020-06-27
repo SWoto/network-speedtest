@@ -62,7 +62,7 @@ class NetworkSpeedTestRegister(EscritorDeLog):
 
 
 HOST = 'http://www.google.com/'
-TIMEOUT = 5
+TIMEOUT = 6
 SHELVNAME = 'database/NetworkSpeedHistory'
 
 objSpeedTest = NetworkSpeedTestRegister(HOST, TIMEOUT, SHELVNAME)
