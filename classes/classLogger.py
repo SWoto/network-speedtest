@@ -15,7 +15,7 @@ class EscritorDeLog():
         self.escreve_log.addHandler(handler)
 
         console = logging.StreamHandler()
-        console.setLevel(logging.WARNING)
+        console.setLevel(logging.INFO)
         console.setFormatter(formatter)
         self.escreve_log.addHandler(console)
 
