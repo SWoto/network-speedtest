@@ -62,24 +62,21 @@ class NetworkSpeedTestRegister(EscritorDeLog):
             upload = 0
             ping = 0
             offline = 0
-            i = 0
             with shelve.open(self.shelvename) as db:
                 my_keys = list(db.keys())
-                my_keys.sort(reverse=True)
+                my_keys.sort()
+                my_keys = my_keys[-self.logbrief:]
                 for key in my_keys:
-                    i = i + 1
                     measure = db[key]
                     download = download + measure.get('download')
                     upload = upload + measure.get('upload')
                     ping = ping + measure.get('ping')
                     if download == 0 and upload == 0:
                         offline = offline + 1
-                    if i == self.logbrief:
-                        break
             
-            download = download / i / 1024 / 2014  
-            upload = upload / i / 1024 / 2014
-            ping = ping / i 
+            download = download / self.logbrief / 1024 / 2014  
+            upload = upload / self.logbrief / 1024 / 2014
+            ping = ping / self.logbrief 
 
             message = "Average of {} measurements. Download = {:.2f} [Mb/s], Upload = {:.2f} [Mb/s], " \
                         "ping = {} [ms], Number of times offline: {}".format(self.logbrief, 
