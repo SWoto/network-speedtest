@@ -1,5 +1,8 @@
-#Doesnt need to track speedhistory
-NetworkSpeedHistory.csv
+# Byte-compiled / optimized / DLL files
+/classes/__pycache__/
+__pycache__/
 
-database_config.py
-logger.log
+# Another files that might have personal data
+*.json
+*.log
+*.db
