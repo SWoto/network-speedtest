@@ -12,7 +12,8 @@ PLOT_CHART = True # it will plot some chart if you have any data every LOGBRIEF*
 
 **Brief Example**
 ```
-[INFO    ] [2020-06-28 13:51:43] - SpeedTestRegister:do_log_report:84 - Average of 10 measurements. Download = 20.86 [Mb/s], Upload = 2.32 [Mb/s], ping = 31 [ms], Number of times offline: 0
+[INFO    ] [2020-06-28 15:20:31] - Average of 10 measurements. Download = 19.59 [Mb/s], Upload = 2.47 [Mb/s], ping = 36 [ms], Number of times offline: 0
+
 ```
 
 **Chart Example**
@@ -22,3 +23,7 @@ PLOT_CHART = True # it will plot some chart if you have any data every LOGBRIEF*
 1. Clone the repository
 1. Open your terminal and go to the downloaded folder
 1. Execute `python3 main.py` in your terminal.
+
+**Obs.:** Might be needed to install `plotly` if you don't have it yet.
+`conda install -c plotly plotly `
+`pip3 install plotly`
