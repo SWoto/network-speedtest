@@ -6,8 +6,9 @@ TIMEOUT = 5 #timeout when checking connection (check_internet_connection)
 SHELVNAME = 'database/NetworkSpeedHistory'
 LOGBRIEF = 10 # every LOGBRIEF measurements, it'll read the date and log a report
 REPLAY = 60 # time between every measument (do_test_report)
+PLOT_CHART = True # it will plot some chart if you have any data every LOGBRIEF*REPLAY seconds
 
-objSpeedTest = SpeedTestRegister(HOST, TIMEOUT, SHELVNAME, LOGBRIEF, REPLAY)
+objSpeedTest = SpeedTestRegister(HOST, TIMEOUT, SHELVNAME, LOGBRIEF, REPLAY, PLOT_CHART)
 
 objScheduler = sched.scheduler(time.time, time.sleep)
 objScheduler.enter(REPLAY, 1, objSpeedTest.do_test_report, (objScheduler,))

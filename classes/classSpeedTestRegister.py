@@ -1,13 +1,25 @@
 import sched, time
-import os
 import requests
-import json
-import shelve #persistent, dictionary-like object
+
+#persistent, dictionary-like object
+import shelve 
+
+# to use plot some charts
+try:
+    import pandas as pd
+    import plotly
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+    _PLOT_CHATS = True
+except ImportError:
+    _PLOT_CHATS = False
+
+# user defined functins
 from classes.speedtest import Speedtest
 from classes.classLogger import EscritorDeLog
 
 class SpeedTestRegister(EscritorDeLog):
-    def __init__(self, host='http://www.google.com/', timeout = 5, shelvename = 'NetworkSpeedHistory', logbrief=10, replay=60):
+    def __init__(self, host='http://www.google.com/', timeout = 5, shelvename = 'NetworkSpeedHistory', logbrief=10, replay=60, plot_charts = True):
         super().__init__()
         self.host = host
         self.timeout = timeout
@@ -15,6 +27,7 @@ class SpeedTestRegister(EscritorDeLog):
         self._counter = 0
         self.logbrief = logbrief
         self.replay = replay
+        self.plot_charts = plot_charts
 
     def check_internet_connection(self) -> bool:
         try:
@@ -53,6 +66,7 @@ class SpeedTestRegister(EscritorDeLog):
             
             if self._counter % self.logbrief == 0: 
                 self.do_log_report()
+                self.plot_grafics_browser()
         except Exception:
             self.escreve_log.exception('Failed to write to db at {}'.format(self._counter))
         
@@ -85,3 +99,41 @@ class SpeedTestRegister(EscritorDeLog):
 
         except Exception:
             self.escreve_log.exception('Could write log brief')
+
+    def plot_grafics_browser(self):
+        if(_PLOT_CHATS and self.plot_charts):
+            df = pd.DataFrame()
+            with shelve.open(self.shelvename) as db:
+                for measure in db:
+                    df = df.append(db[measure], ignore_index=True)
+
+            if len(df.index) > self.logbrief:
+                df = df.sort_values(by=['timestamp'])
+                df['download'] = df['download']/1024/1024
+                df['upload'] = df['upload']/1024/1024
+
+                fig = make_subplots(rows=3, cols=1, 
+                    shared_xaxes=True, 
+                    subplot_titles=("Download", "Upload", "Ping"))
+
+                # add values
+                fig.add_trace(
+                    go.Scatter(x=df['timestamp'], y=df['download']),
+                    row=1, col=1
+                )
+                fig.add_trace(
+                    go.Scatter(x=df['timestamp'], y=df['upload']),
+                    row=2, col=1
+                )
+                fig.add_trace(
+                    go.Scatter(x=df['timestamp'], y=df['ping']),
+                    row=3, col=1
+                )
+
+                # change yaxis label
+                fig.update_yaxes(title_text="[Mb/s]", row=2, col=1)
+                fig.update_yaxes(title_text="[Mb/s]", row=1, col=1)
+                fig.update_yaxes(title_text="[ms]", row=3, col=1)
+
+                plotly.offline.plot(fig, filename='charts/speedtest.html', auto_open=False)
+                #fig.show()

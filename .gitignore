@@ -3,7 +3,10 @@
 __pycache__/
 
 # Another files that might have personal data
+*.html
 *.json
 *.log
 *.db
+
+# Just testing some stuffs ;p
 teste.py
