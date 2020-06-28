@@ -13,7 +13,9 @@ class EscritorDeLog():
         self.escreve_log.setLevel(logging.DEBUG)
         self.escreve_log.handlers = []
         self.escreve_log.addHandler(handler)
-
+        
+        formatter = logging.Formatter('[%(levelname)-8s] [%(asctime)s] - %(message)s', 
+            "%Y-%m-%d %H:%M:%S")
         console = logging.StreamHandler()
         console.setLevel(logging.INFO)
         console.setFormatter(formatter)

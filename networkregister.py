@@ -74,9 +74,9 @@ class NetworkSpeedTestRegister(EscritorDeLog):
                     if download == 0 and upload == 0:
                         offline = offline + 1
             
-            download = download / self.logbrief / 1024 / 2014  
-            upload = upload / self.logbrief / 1024 / 2014
-            ping = ping / self.logbrief 
+            download = download / len(my_keys) / 1024 / 1024  
+            upload = upload / len(my_keys) / 1024 / 1024
+            ping = ping / len(my_keys)
 
             message = "Average of {} measurements. Download = {:.2f} [Mb/s], Upload = {:.2f} [Mb/s], " \
                         "ping = {} [ms], Number of times offline: {}".format(self.logbrief, 
