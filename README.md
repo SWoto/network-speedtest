@@ -18,3 +18,7 @@ PLOT_CHART = True # it will plot some chart if you have any data every LOGBRIEF*
 **Chart Example**
 ![Download/Upload/Ping](images/chart_example.png?raw=true)
 
+## How to use
+1. Clone the repository
+1. Open your terminal and go to the downloaded folder
+1. Execute `python3 main.py` in your terminal.
