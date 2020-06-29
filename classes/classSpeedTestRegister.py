@@ -62,13 +62,13 @@ class SpeedTestRegister(EscritorDeLog):
                     json_object = {"download": 0, "upload": 0,  "ping": 999}
                 key = str(int(time.time()))
                 db[key] = json_object
-            schedulerExecutions.enter(self.replay, 1, self.do_test_report, (schedulerExecutions,))
-            
             if self._counter % self.logbrief == 0: 
                 self.do_log_report()
                 self.plot_grafics_browser()
         except Exception:
             self.escreve_log.exception('Failed to write to db at {}'.format(self._counter))
+        finally:
+            schedulerExecutions.enter(self.replay, 1, self.do_test_report, (schedulerExecutions,))
         
     def do_log_report(self):
         try:
@@ -137,3 +137,5 @@ class SpeedTestRegister(EscritorDeLog):
 
                 plotly.offline.plot(fig, filename='charts/speedtest.html', auto_open=False)
                 #fig.show()
+        elif not(_PLOT_CHATS) and self.plot_charts:
+            self.escreve_log.warning('You need to install plotly to generate some charts')
