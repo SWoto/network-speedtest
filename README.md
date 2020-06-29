@@ -17,6 +17,7 @@ PLOT_CHART = True # it will plot some chart if you have any data every LOGBRIEF*
 ```
 
 **Chart Example**
+The new chart version supports more than one network test. For example, if you test in you house and then in your work, the chart will show you a dropdown menu so you can chose which one do you want to see.
 ![Download/Upload/Ping](images/chart_example.png?raw=true)
 
 ## How to use
