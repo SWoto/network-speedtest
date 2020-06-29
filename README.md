@@ -25,5 +25,7 @@ PLOT_CHART = True # it will plot some chart if you have any data every LOGBRIEF*
 1. Execute `python3 main.py` in your terminal.
 
 **Obs.:** Might be needed to install `plotly` if you don't have it yet.
+
 `conda install -c plotly plotly `
+
 `pip3 install plotly`
