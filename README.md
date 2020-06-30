@@ -25,23 +25,22 @@ The new chart version supports more than one network test. For example, if you t
 1. Open your terminal and go to the downloaded folder
 1. Execute `python3 main.py` in your terminal.
 
-**Obs.:** Might be needed to install `plotly` or other libraries if you don't have them.
-
+**Obs.:** Might be needed to install `plotly` or other libraries if you don't have them.  
 `sudo pip3 install -r requirements.txt`
 
 ## Set it to run on boot
 **Tested on raspberry pi only**
 
-1. Copy the my_speedtest.service to /etc/systemd/system
+1. Copy the my_speedtest.service to /etc/systemd/system  
 `sudo cp my_speedtest.service /etc/systemd/system/my_speedtest.service`
 
-2.  Now, try to start it
+2.  Now, try to start it  
 `sudo systemctl start my_speedtest.service`
 
-3. Check if its working
+3. Check if its working  
 `sudo systemctl status my_speedtest.service`
 
-4. Than enable it to start on boot
+4. Than enable it to start on boot  
 `sudo systemctl enable my_speedtest`
 
 Any more information, check https://www.raspberrypi.org/documentation/linux/usage/systemd.md
