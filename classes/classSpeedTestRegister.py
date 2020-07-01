@@ -138,6 +138,12 @@ class SpeedTestRegister(EscritorDeLog):
                                         )
                         buttons.append(button_dict)
 
+                    button_dict =   dict(label="All Charts",
+                        method="update",
+                        args=[{"visible": [True]*len(clients)*3}]
+                    )
+                    buttons.append(button_dict)
+
                     # change yaxis label
                     fig.update_yaxes(title_text="[Mb/s]", row=2, col=1)
                     fig.update_yaxes(title_text="[Mb/s]", row=1, col=1)
